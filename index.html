@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Для мамы ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 25px 0;
+
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #4a2630;
+
+    overflow-x: hidden;
+
+    /* ЯРКИЙ КРАСНО-РОЗОВЫЙ ФОН */
+    background: linear-gradient(
+        120deg,
+        #ffb6c1,
+        #ff6b81,
+        #e91e46,
+        #8b001f,
+        #ff405f,
+        #ffd0d8,
+        #a50025,
+        #ff7185
+    );
+
+    background-size: 500% 500%;
+    animation: backgroundMove 16s ease-in-out infinite;
+}
+
+/* Медленное движение градиента */
+@keyframes backgroundMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 50% 100%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 50% 0%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Дополнительное мягкое свечение */
+body::before {
+    content: "";
+    position: fixed;
+
+    width: 160vw;
+    height: 160vh;
+
+    left: -30vw;
+    top: -30vh;
+
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(255,255,255,0.30),
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(255,0,60,0.25),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,150,170,0.18),
+            transparent 30%
+        );
+
+    animation: plasmaMove 12s ease-in-out infinite alternate;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes plasmaMove {
+    from {
+        transform: translate(-3%, -3%) scale(1);
+    }
+
+    to {
+        transform: translate(3%, 3%) scale(1.1);
+    }
+}
+
+/* БЕЛАЯ КАРТОЧКА */
+.card {
+    position: relative;
+
+    width: 90%;
+    max-width: 650px;
+
+    margin: 20px auto;
+    padding: 45px 25px;
+
+    background: rgba(255, 255, 255, 0.90);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 60px rgba(80, 0, 20, 0.35),
+        0 0 35px rgba(255, 180, 195, 0.45);
+
+    backdrop-filter: blur(8px);
+
+    animation: cardAppear 1s ease;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ГЛАВНОЕ СЕРДЦЕ */
+.heart {
+    font-size: 70px;
+
+    animation: heartbeat 1.5s infinite;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255, 40, 80, 0.5));
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+h1 {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 25px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+/* КНОПКИ */
+button,
+.download {
+    display: inline-block;
+
+    margin-top: 20px;
+    padding: 16px 28px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #e91e46,
+        #ff6b81
+    );
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 25px rgba(200, 20, 60, 0.35);
+
+    transition: 0.25s;
+}
+
+button:hover,
+.download:hover {
+    transform: translateY(-3px) scale(1.04);
+}
+
+button:active,
+.download:active {
+    transform: scale(0.95);
+}
+
+/* СЮРПРИЗ */
+#surprise {
+    display: none;
+
+    margin-top: 30px;
+    padding: 25px 20px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border-radius: 25px;
+
+    font-size: 20px;
+    line-height: 1.7;
+
+    animation: appear 0.8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* СООБЩЕНИЕ ПОСЛЕ СКАЧИВАНИЯ */
+#downloadMessage {
+    display: none;
+
+    margin-top: 25px;
+    padding: 20px;
+
+    background: #fff0f3;
+
+    border-radius: 20px;
+
+    font-size: 18px;
+    line-height: 1.6;
+
+    animation: appear 0.6s ease;
+}
+
+.download-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.signature {
+    margin-top: 25px;
+
+    font-size: 23px;
+    font-weight: bold;
+}
+
+/* ЛЕТАЮЩИЕ СЕРДЦА И ЦВЕТЫ */
+.floating {
+    position: fixed;
+
+    bottom: -70px;
+
+    font-size: 28px;
+
+    animation: float 8s linear infinite;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 0 7px rgba(255, 255, 255, 0.4));
+}
+
+@keyframes float {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(0.7);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform:
+            translateY(-55vh)
+            rotate(25deg)
+            scale(1.1);
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            rotate(-25deg)
+            scale(0.9);
+
+        opacity: 0;
+    }
+}
+
+/* БЛЁСТКИ */
+.sparkle {
+    position: fixed;
+
+    bottom: -30px;
+
+    font-size: 20px;
+
+    pointer-events: none;
+
+    animation: sparkleFloat 6s linear infinite;
+
+    opacity: 0;
+}
+
+@keyframes sparkleFloat {
+
+    0% {
+        transform:
+            translateY(20px)
+            scale(0.4);
+
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translateY(-100vh)
+            scale(1.3);
+
+        opacity: 0;
+    }
+}
+
+/* ТЕЛЕФОН */
+@media (max-width: 500px) {
+
+    h1 {
+        font-size: 34px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 35px 18px;
+    }
+
+    .heart {
+        font-size: 60px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="heart">❤️</div>
+
+    <h1>Мамочка!</h1>
+
+    <h2>С днём рождения! 🎂🌷</h2>
+
+    <p>
+        Я сделал этот сайт специально для тебя.
+        <br>
+        Это мой маленький подарок,
+        сделанный своими руками ❤️
+    </p>
+
+    <p>
+        Спасибо тебе за всё,
+        что ты для меня делаешь.
+        <br>
+        Ты делаешь каждый мой день
+        теплее и счастливее. 🌸
+    </p>
+
+    <button onclick="showSurprise()">
+        🎁 Открыть сюрприз
+    </button>
+
+    <div id="surprise">
+
+        <div style="font-size: 30px;">
+            💐 ❤️ 🌷 ❤️ 💐
+        </div>
+
+        <br>
+
+        <b>Мамочка, поздравляю тебя с днём рождения! ❤️</b>
+
+        <br><br>
+
+        Я хочу пожелать тебе огромного счастья,
+        крепкого здоровья, побольше радостных моментов
+        и чтобы каждый твой день был наполнен улыбками.
+
+        <br><br>
+
+        Спасибо тебе за твою любовь, заботу,
+        поддержку и за то, что ты всегда рядом.
+
+        <br><br>
+
+        Я очень тебя люблю и очень ценю тебя.
+        Ты для меня самый родной человек. ❤️
+
+        <br><br>
+
+        Пусть все твои мечты сбываются,
+        а в доме всегда будут тепло,
+        счастье и хорошее настроение! 🌷✨
+
+        <div class="signature">
+            С любовью, твой сын ❤️
+        </div>
+
+        <br>
+
+        🎉 С ДНЁМ РОЖДЕНИЯ, МАМА! 🎉
+
+        <br>
+
+        <!-- КНОПКА СКАЧИВАНИЯ APK -->
+        <a
+            class="download"
+            href="mama-game.apk"
+            download
+            onclick="showDownloadMessage()"
+        >
+            🎁 Скачать подарок — игру
+        </a>
+
+        <div id="downloadMessage">
+
+            <div class="download-title">
+                🎉 Подарок скачивается!
+            </div>
+
+            После скачивания открой файл
+            <b>mama-game.apk</b> в загрузках телефона.
+
+            <br><br>
+
+            Android покажет системное окно установки.
+            Нажми <b>«Установить»</b> — и игра будет готова! ❤️
+
+            <br><br>
+
+            🌷 Приятной игры, мамочка! 🌷
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ЛЕТАЮЩИЕ СЕРДЕЧКИ И ЦВЕТЫ -->
+
+<div class="floating"
+     style="left:5%; animation-delay:0s;">
+    ❤️
+</div>
+
+<div class="floating"
+     style="left:16%; animation-delay:2s;">
+    🌷
+</div>
+
+<div class="floating"
+     style="left:28%; animation-delay:4s;">
+    💕
+</div>
+
+<div class="floating"
+     style="left:40%; animation-delay:1s;">
+    🌸
+</div>
+
+<div class="floating"
+     style="left:53%; animation-delay:3s;">
+    ❤️
+</div>
+
+<div class="floating"
+     style="left:66%; animation-delay:5s;">
+    🌹
+</div>
+
+<div class="floating"
+     style="left:78%; animation-delay:2.5s;">
+    💗
+</div>
+
+<div class="floating"
+     style="left:90%; animation-delay:4.5s;">
+    🌺
+</div>
+
+
+<!-- БЛЁСТКИ -->
+
+<div class="sparkle"
+     style="left:10%; animation-delay:1s;">
+    ✨
+</div>
+
+<div class="sparkle"
+     style="left:25%; animation-delay:3s;">
+    ✨
+</div>
+
+<div class="sparkle"
+     style="left:42%; animation-delay:2s;">
+    ✨
+</div>
+
+<div class="sparkle"
+     style="left:62%; animation-delay:4s;">
+    ✨
+</div>
+
+<div class="sparkle"
+     style="left:82%; animation-delay:1.5s;">
+    ✨
+</div>
+
+
+<script>
+
+function showSurprise() {
+
+    document.getElementById("surprise").style.display = "block";
+
+    setTimeout(function() {
+
+        document.getElementById("surprise").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 100);
+}
+
+
+function showDownloadMessage() {
+
+    setTimeout(function() {
+
+        document.getElementById("downloadMessage").style.display = "block";
+
+    }, 500);
+
+}
+
+</script>
+
+</body>
+</html>
